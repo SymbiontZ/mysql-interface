@@ -1,0 +1,7 @@
+SELECT art_num 'Código', art_nom 'Articulo', art_pc 'Precio de Compra'
+FROM articulos
+WHERE UPPER(art_nom) LIKE 'B%' AND art_pc > ALL
+    (SELECT AVG(art_pc)
+    FROM articulos
+    WHERE UPPER(art_nom) LIKE 'B%')
+ORDER BY art_pc DESC;
